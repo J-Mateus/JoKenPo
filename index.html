@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    
+    <title>Jo Ken Po!</title>
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="title">Jo Ken Po!</h1>
+        <div class="frame row">
+            <div class="col-12 col-md-4">
+              <div id="pedra" class="carta pedra">
+                <span>Pedra</span>
+                <div class="img"></div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div id="papel" class="carta papel">
+                <span>Papel</span>
+                <div class="img"></div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div id="tesoura" class="carta tesoura">
+                <span>Tesoura</span>
+                <div class="img"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+
+        const $ = document.querySelector.bind(document);
+        const pedra = $('#pedra');
+        const papel = $('#papel');
+        const tesoura = $('#tesoura');
+
+        let playerSelected = "";
+        let computerSelected = "";
+
+        pedra.addEventListener("click", function(e) {
+          e.preventDefault();
+          playerSelected = e.target.id;
+          pedra.classList.add('selected');
+          papel.classList.remove('selected');
+          tesoura.classList.remove('selected');
+
+          console.log(playerSelected);
+          computerSelector()
+        });
+        
+        papel.addEventListener("click", function(e) {
+          e.preventDefault();
+          playerSelected = e.target.id;
+          pedra.classList.remove('selected');
+          papel.classList.add('selected');
+          tesoura.classList.remove('selected');
+
+          console.log(playerSelected);
+          computerSelector()
+        });
+
+        tesoura.addEventListener("click", function(e) {
+          e.preventDefault();
+          playerSelected = e.target.id;
+          pedra.classList.remove('selected');
+          papel.classList.remove('selected');
+          tesoura.classList.add('selected');
+
+          console.log("P", playerSelected);
+          computerSelector();
+        });
+        
+        function computerSelector() {
+          let cards = [
+            "pedra",
+            "papel",
+            "tesoura"
+          ];
+          
+          const random = Math.floor(Math.random() * cards.length);
+          computerSelected = cards[random];
+
+          $(`#${computerSelected}`).classList.add('selected');
+
+          console.log("PC", computerSelected);
+
+          setTimeout(() => {
+           alert(verification());
+           clear();
+          }, 100);
+
+        }
+
+        function verification() {
+
+        if(playerSelected == "pedra") {
+
+          if(computerSelected == "tesoura") {
+            return "Ganhou!!";
+          }else if(computerSelected == "papel") {
+            return "Perdeu!!";
+          }else { return "Empatou!!";}
+
+        }else if (playerSelected == "papel"){
+          if(computerSelected == "pedra") {
+            return "Ganhou!!";
+          }else if(computerSelected == "tesoura") {
+            return "Perdeu!!";
+          }else { return "Empatou!!";}
+
+        }else if(playerSelected == "tesoura") {
+          if(computerSelected == "papel") {
+            return "Ganhou!!";
+          }else if(computerSelected == "pedra") {
+            return "Perdeu!!";
+          }else { return "Empatou!!"; }
+        }
+      }
+        function clear() {
+          computerSelected = "";
+          playerSelected = "";
+          pedra.classList.remove('selected');
+          papel.classList.remove('selected');
+          tesoura.classList.remove('selected');
+
+        }
+        
+
+
+    </script>
+
+  </body>
+</html>

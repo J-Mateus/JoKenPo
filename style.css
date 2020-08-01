@@ -1,0 +1,60 @@
+.title {
+    width: 100%;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+}
+
+.frame div {
+    margin-top: 2px;
+}
+
+.carta {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid orange;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.carta:hover {
+    cursor: pointer;
+    background-color: #0000004f;
+}
+
+.carta span {
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+}
+
+.carta .img {
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    z-index: -1;
+}
+
+.carta.pedra .img {
+    background-image: url(assets/img/img-pedra.png);
+}
+
+.carta.papel .img {
+    background-image: url(assets/img/img-papel.png);
+}
+
+.carta.tesoura .img {
+    background-image: url(assets/img/img-tesoura.png);
+}
+
+.selected {
+    background-color: #0000004f;
+    border-radius: 0;
+    border: 4px solid #0c0c0c;
+}
